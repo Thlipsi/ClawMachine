@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://tgiwrupw6khu"]
+
+[ext_resource type="Script" path="res://test_level.gd" id="1_uacip"]
+[ext_resource type="Script" path="res://GiftSpawner.gd" id="2_drnbv"]
+[ext_resource type="PackedScene" uid="uid://cdd4yotqncmej" path="res://claw_machine.tscn" id="3_gfc35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsfy2"]
+size = Vector2(1158, 20)
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_uacip")
+
+[node name="GiftSpawner" type="Node" parent="."]
+script = ExtResource("2_drnbv")
+
+[node name="FallTimer" type="Timer" parent="GiftSpawner"]
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(577, 636)
+shape = SubResource("RectangleShape2D_qsfy2")
+
+[node name="ClawMachine" parent="." instance=ExtResource("3_gfc35")]
+position = Vector2(500, 0)
+
+[connection signal="timeout" from="GiftSpawner/FallTimer" to="GiftSpawner" method="_on_fall_timer_timeout"]

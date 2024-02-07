@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cowktcu16vh7j"]
+
+[ext_resource type="Script" path="res://win_menu.gd" id="1_0laca"]
+
+[node name="WinMenu" type="Node2D"]
+script = ExtResource("1_0laca")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 412.0
+offset_top = 34.0
+offset_right = 807.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 100
+text = "You Win"
+horizontal_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 496.0
+offset_top = 320.0
+offset_right = 683.0
+offset_bottom = 419.0
+text = "Quit
+"
+
+[node name="Retry" type="Button" parent="."]
+offset_left = 512.0
+offset_top = 189.0
+offset_right = 681.0
+offset_bottom = 281.0
+text = "Play again"
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]

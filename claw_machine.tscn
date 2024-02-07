@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdd4yotqncmej"]
+
+[ext_resource type="Script" path="res://claw_machine.gd" id="1_47f2g"]
+[ext_resource type="Texture2D" uid="uid://or5m7i06giua" path="res://icon.svg" id="2_574aa"]
+[ext_resource type="Texture2D" uid="uid://dj5vitya3bqjy" path="res://tiny_ship9.png" id="3_miwkp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_231jj"]
+size = Vector2(104.727, 14.8133)
+
+[node name="ClawMachine" type="Node2D"]
+script = ExtResource("1_47f2g")
+
+[node name="Arm" type="Sprite2D" parent="."]
+scale = Vector2(0.171875, 3.51563)
+texture = ExtResource("2_574aa")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Claw" type="Marker2D" parent="."]
+position = Vector2(0, 225)
+
+[node name="Claw" type="Sprite2D" parent="Claw"]
+position = Vector2(0, 46)
+rotation = -3.14159
+texture = ExtResource("3_miwkp")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(11, 176)
+scale = Vector2(0.171875, 3.51563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(128, 34.1333)
+shape = SubResource("RectangleShape2D_231jj")
+
+[node name="Area2D2" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 175.781)
+scale = Vector2(0.171875, 3.51563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-192, 34.1956)
+shape = SubResource("RectangleShape2D_231jj")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
