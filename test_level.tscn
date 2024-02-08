@@ -10,8 +10,9 @@ size = Vector2(1158, 20)
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_uacip")
 
-[node name="GiftSpawner" type="Node" parent="."]
+[node name="GiftSpawner" type="Node" parent="." node_paths=PackedStringArray("claw_machine")]
 script = ExtResource("2_drnbv")
+claw_machine = NodePath("../ClawMachine")
 
 [node name="FallTimer" type="Timer" parent="GiftSpawner"]
 one_shot = true

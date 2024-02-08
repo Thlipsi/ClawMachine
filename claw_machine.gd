@@ -5,6 +5,7 @@ var lift = false
 var can_move = true
 var has_gift1 = false
 var has_gift2 = false
+signal set_body
 
 var swingleft = false
 var swingright = false
@@ -61,6 +62,7 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("gift"):
 		has_gift1 = true
 		Global.body = body
+		emit_signal("set_body", body)
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("gift"):
